@@ -464,6 +464,14 @@ footer.foot .foot-contact a:hover{color:var(--magenta-text)}
 .wfd-k{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px}
 .wfd-foot b{font-size:18px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 </style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xzxypv1egt");
+</script>
 </head>
 <body>
 
@@ -796,7 +804,7 @@ function homePage(){
       <span><i></i>Installed in a day</span>
       <span><i></i>Works with your existing machines</span>
       <span><i></i>No lock-in contract</span>
-      <span><i></i>Support Available 24/7</span>
+      <span><i></i>Australian support, 24/7</span>
     </div>
     <figure class="hero-photo" style="margin:var(--s3) 0 0">
       <img src="${IMG.hero}" alt="A Bubblepay kiosk mounted on a blue laundromat wall between Scan &amp; Pay and Tap &amp; Pay instruction posters" width="1140" height="720">
@@ -932,6 +940,7 @@ function render(){
   });
   window.scrollTo({top:0,behavior:"instant"});
   wireCallouts();
+  if(window.clarity) window.clarity("set", "page", key || "home");
 }
 function closeAll(){
   document.querySelectorAll('.co.open').forEach(c=>{
@@ -943,7 +952,10 @@ function wireCallouts(){
     const btn=co.querySelector('.co-btn');
     btn.addEventListener('click',e=>{e.stopPropagation();
       const open=co.classList.contains('open'); closeAll();
-      if(!open){co.classList.add('open'); btn.setAttribute('aria-expanded','true');}});
+      if(!open){
+        co.classList.add('open'); btn.setAttribute('aria-expanded','true');
+        if(window.clarity) window.clarity("set", "feature_opened", btn.querySelector('span').textContent.trim());
+      }});
     co.querySelector('.pop-close').addEventListener('click',e=>{e.stopPropagation();closeAll();btn.focus();});
     co.querySelector('.pop').addEventListener('click',e=>e.stopPropagation());
   });
