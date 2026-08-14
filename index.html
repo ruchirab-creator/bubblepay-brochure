@@ -300,6 +300,30 @@ footer.foot .mark img{height:24px}
   box-shadow:var(--lift);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s1)}
 .also .kicker{margin-right:var(--s1)}
 
+/* ---------- alternating image + text ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:center;padding-block:var(--s9) 0}
+.split--flip .split-media{order:2}
+.split-copy{display:grid;gap:var(--s2);justify-items:start}
+.split-copy h2{margin:0}
+.split-copy .lede{margin:0}
+.split-list{list-style:none;margin:var(--s1) 0 0;padding:0;display:grid;gap:var(--s2)}
+.split-list li{display:flex;gap:var(--s2);font-size:16px;line-height:1.5;color:var(--ink-2)}
+.split-list b{display:block;color:var(--ink);font-weight:600}
+.split-list .li-ico{width:32px;height:32px;border-radius:var(--r-sm);display:grid;place-items:center;flex:none;
+  background:var(--petal);color:var(--magenta-text)}
+.split-list .li-ico svg{width:17px;height:17px}
+
+.split-media img{width:100%;height:auto;border-radius:var(--r-lg);box-shadow:var(--lift-3);display:block}
+.img-slot{display:grid;place-items:center;align-content:center;gap:var(--s1);aspect-ratio:4/3;border-radius:var(--r-lg);
+  background:var(--petal);box-shadow:inset 0 0 0 2px var(--petal-deep);text-align:center;padding:var(--s3)}
+.img-slot svg{width:28px;height:28px;color:var(--magenta-text)}
+.img-slot b{font-size:15px;font-weight:600;color:var(--ink)}
+.img-slot span{font-size:13px;color:var(--ink-3)}
+@media(max-width:900px){
+  .split{grid-template-columns:1fr;gap:var(--s3);padding-block:var(--s6) 0}
+  .split--flip .split-media{order:0}
+}
+
 /* ---------- google reviews ---------- */
 .stars{display:inline-flex;gap:2px;flex:none}
 .stars svg{width:15px;height:15px;fill:#E8A200}
@@ -500,6 +524,7 @@ footer.foot .foot-contact a:hover{color:var(--magenta-text)}
       <a href="#/app">Customer app</a>
       <a href="#/portal">Owners' portal</a>
       <a href="#/washfold">Wash &amp; Fold POS</a>
+      <a href="#/marketing">Marketing</a>
       <a class="btn btn-primary" href="https://www.bubblepay.com.au/contact-sales-au" target="_blank" rel="noopener">Book a demo</a>
     </nav>
   </div>
@@ -545,6 +570,7 @@ const I = {
   truck:  S('<path d="M2.5 6.5h10.5v10H2.5z"/><path d="M13 9.5h3.6l3.4 3.2v3.8H13z"/><circle cx="7" cy="18.5" r="1.9"/><circle cx="17" cy="18.5" r="1.9"/>'),
   tag:    S('<path d="M3.5 11.2V4.5a1 1 0 0 1 1-1h6.7a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-5.8 5.8a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.5-1.5Z"/><circle cx="8" cy="8" r="1.4"/>'),
   clock:  S('<circle cx="12" cy="12" r="9"/><path d="M12 7v5.3l3.2 2"/>'),
+  image:  S('<rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 4.5-4.5 3.5 3.5 3-2.5L20 17"/>'),
   ext:    S('<path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5"/>'),
   arrow:  S('<path d="M5 12h13M13 6.5 18.5 12 13 17.5"/>'),
   back:   S('<path d="M19 12H6M11 6.5 5.5 12 11 17.5"/>'),
@@ -647,6 +673,41 @@ const products = {
       {i:"shield", t:"Security Monitoring", ft:"24/7 security monitoring", b:"Device health, tamper alerts, role-based staff access and a full audit trail of every refund and price change.", o:"Trust the numbers and the team."}
     ],
     also:["Serial connection to machines","Branded portal &amp; custom domain","Coupons &amp; promo codes","Team roles &amp; permissions","Settlement reporting","Multi-store rollups"]
+  },
+  marketing: {
+    slug:"marketing", icon:"mega", name:"Marketing", tag:null, eyebrow:"Marketing",
+    head:["Fill the quiet hours.","<span class='grad'>Keep the regulars coming back.</span>"],
+    lede:"Two ways to reach your customers: send when you have something to say, and let the system send when a customer does something worth responding to. Both run on the transaction data you already have.",
+    short:"Broadcast announcements and automated triggers, using the customer data you already have.",
+    chips:["SMS, email &amp; push","Segments","Automations","Campaign reporting"],
+    splits:[
+      {
+        kicker:"Broadcast marketing", h:"Say it once. Reach everyone.",
+        slot:"Image slot &middot; 4:3 &middot; 1200 &times; 900px",
+        img:null,
+        lede:"One message, every customer &mdash; or just the ones you pick. For the things you decide to announce, from a new campaign to a machine that's down.",
+        points:[
+          {i:"mega",  t:"Announce a new campaign", b:"Launch a promotion, a price change or a new service and tell every customer the same day."},
+          {i:"shield",t:"Notify on outages", b:"A machine down, a site closed for maintenance, a card reader offline &mdash; tell people before they turn up."},
+          {i:"users", t:"Send to a segment", b:"Filter by store, membership, spend or last visit, so a message about one site doesn't go to all of them."},
+          {i:"clock", t:"Schedule or send now", b:"Queue it for the quiet hour or push it immediately, across SMS, email and app push."},
+          {i:"chart", t:"See what it did", b:"Opens, clicks and redemptions per campaign, next to the revenue for that period."}
+        ]
+      },
+      {
+        kicker:"Trigger marketing", h:"The system sends it for you.",
+        slot:"Image slot &middot; 4:3 &middot; 1200 &times; 900px",
+        img:null,
+        lede:"Automations that fire on a customer's behaviour instead of your calendar. Set them once and they keep working through every quiet Tuesday.",
+        points:[
+          {i:"person",t:"Win back lapsed customers", b:"Someone hasn't been in for 30, 60 or 90 days &mdash; send a nudge with a reason to return."},
+          {i:"medal", t:"Inform them of offers", b:"Reach the customers an offer actually suits, at the moment it's worth taking."},
+          {i:"wallet",t:"Top-up and renewal reminders", b:"Wallet running low or a membership about to lapse &mdash; a reminder before it becomes a lost visit."},
+          {i:"clock", t:"Fill the slow hours", b:"Trigger an off-peak offer on the days and times your reporting shows are quiet."},
+          {i:"chat",  t:"Post-visit follow-up", b:"A thank-you after a wash, and a review request to the customers most likely to leave a good one."}
+        ]
+      }
+    ]
   },
   washfold: {
     slug:"washfold", icon:"basket", name:"Wash &amp; Fold POS", tag:"New", eyebrow:"Wash &amp; Fold POS",
@@ -758,7 +819,6 @@ function ctaHTML(line){
     <p>${line}</p>
     <div class="row">
       <a class="btn btn-primary" href="${DEMO_URL}" target="_blank" rel="noopener">Book a 20-minute demo ${I.ext}<span class="sr-only"> (opens in a new tab)</span></a>
-      <a class="btn btn-ghost" href="#/">Explore the platform</a>
     </div>
   </div></section>`;
 }
@@ -931,9 +991,30 @@ function stageHTML(d, sec){
   </section>`;
 }
 
+
+function splitsHTML(d){
+  return d.splits.map((sp, i) => `<section class="shell">
+    <div class="split${i % 2 ? " split--flip" : ""}">
+      <div class="split-media">${sp.img
+        ? `<img src="${sp.img}" alt="${sp.alt || sp.h}">`
+        : `<div class="img-slot">${I.image}<b>${sp.h}</b><span>${sp.slot}</span></div>`}</div>
+      <div class="split-copy">
+        <span class="kicker">${sp.kicker}</span>
+        <h2 class="display">${sp.h}</h2>
+        <p class="lede">${sp.lede}</p>
+        <ul class="split-list">${sp.points.map(pt=>`<li>
+          <span class="li-ico">${I[pt.i]||I.spark}</span>
+          <span><b>${pt.t}</b>${pt.b}</span></li>`).join("")}</ul>
+      </div>
+    </div>
+  </section>`).join("");
+}
+
 function productPage(key){
   const d = products[key];
-  const body = (d.sections ? d.sections.map(sec => stageHTML(d, sec)).join("") : stageHTML(d, null))
+  const body = (d.splits ? splitsHTML(d)
+    : d.sections ? d.sections.map(sec => stageHTML(d, sec)).join("")
+    : stageHTML(d, null))
     + (d.eco ? ecoHTML() : "");
   return `
   <section class="shell detail-head">
@@ -951,7 +1032,8 @@ function productPage(key){
 }
 
 const routes = {"":homePage,"kiosk":()=>productPage("kiosk"),"app":()=>productPage("app"),
-  "portal":()=>productPage("portal"),"washfold":()=>productPage("washfold")};
+  "portal":()=>productPage("portal"),"washfold":()=>productPage("washfold"),
+  "marketing":()=>productPage("marketing")};
 
 function render(){
   const key = (location.hash.replace(/^#\/?/,"").split("/")[0]) || "";
